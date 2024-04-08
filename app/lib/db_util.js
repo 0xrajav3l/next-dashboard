@@ -1,6 +1,8 @@
-import connection from '@/lib/db';
+const db = require('./db');
 
-export async function getTime() {
-  const [rows] = await connection.query('SELECT NOW() as time');
-  return rows[0].time;
+async function fetchData() {
+  const res = await db.query('SELECT * FROM your_table');
+  console.log(res.rows[0].time.toString());
 }
+
+fetchData();

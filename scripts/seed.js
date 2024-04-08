@@ -1,4 +1,3 @@
-const { db } = require('@vercel/postgres');
 const {
   invoices,
   customers,
@@ -6,6 +5,7 @@ const {
   users,
 } = require('../app/lib/placeholder-data.js');
 const bcrypt = require('bcrypt');
+const { db } = require('@vercel/postgres');
 
 async function seedUsers(client) {
   try {
@@ -161,7 +161,9 @@ async function seedRevenue(client) {
 }
 
 async function main() {
+  console.log('Seeding the database...');
   const client = await db.connect();
+  console.log('Connected to the database');
 
   await seedUsers(client);
   await seedCustomers(client);
